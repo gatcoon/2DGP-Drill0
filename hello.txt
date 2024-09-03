@@ -1,2 +1,4 @@
 hellow, world,
 이재준
+
+day2 - hello
