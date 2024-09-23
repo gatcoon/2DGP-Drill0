@@ -1,160 +1,56 @@
-Python 3.12.5 (tags/v3.12.5:ff3bc82, Aug  6 2024, 20:45:27) [MSC v.1940 64 bit (AMD64)] on win32
-Type "help", "copyright", "credits" or "license()" for more information.
+import turtle
 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py
+# 키보드 입력
+turtle.listen()
 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
+# 거북이 생성
+turtle.shape("turtle")
+turtle.penup()
 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
+# 초기 위치
+start_position = (0, 0)
+turtle.goto(start_position)
+turtle.pendown()
 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
+# 스탬프 찍기 함수
+def stamp():
+    turtle.stamp()
 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
+def move_up():
+    turtle.setheading(90)
+    x, y = turtle.position()  # 현재 위치 가져오기
+    turtle.goto(x, y + 50)
+    stamp()
 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
-Exception in Tkinter callback
-Traceback (most recent call last):
-  File "C:\Python\Lib\tkinter\__init__.py", line 1968, in __call__
-    return self.func(*args)
-           ^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\turtle.py", line 676, in eventfun
-    fun()
-  File "C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py", line 41, in move_left
-    t.setheading(180)
-  File "C:\Python\Lib\turtle.py", line 1935, in setheading
-    self._rotate(angle)
-  File "C:\Python\Lib\turtle.py", line 3348, in _rotate
-    self._update()
-  File "C:\Python\Lib\turtle.py", line 2668, in _update
-    self._update_data()
-  File "C:\Python\Lib\turtle.py", line 2654, in _update_data
-    self.screen._incrementudc()
-  File "C:\Python\Lib\turtle.py", line 1284, in _incrementudc
-    raise Terminator
-turtle.Terminator
-Exception in Tkinter callback
-Traceback (most recent call last):
-  File "C:\Python\Lib\tkinter\__init__.py", line 1968, in __call__
-    return self.func(*args)
-           ^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\turtle.py", line 676, in eventfun
-    fun()
-  File "C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py", line 47, in move_right
-    t.setheading(0)
-  File "C:\Python\Lib\turtle.py", line 1935, in setheading
-    self._rotate(angle)
-  File "C:\Python\Lib\turtle.py", line 3348, in _rotate
-    self._update()
-  File "C:\Python\Lib\turtle.py", line 2668, in _update
-    self._update_data()
-  File "C:\Python\Lib\turtle.py", line 2658, in _update_data
-    self.screen._drawline(self.currentLineItem, self.currentLine,
-  File "C:\Python\Lib\turtle.py", line 539, in _drawline
-    self.cv.coords(lineitem, *cl)
-  File "<string>", line 1, in coords
-  File "C:\Python\Lib\tkinter\__init__.py", line 2851, in coords
-    self.tk.call((self._w, 'coords') + args))]
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_tkinter.TclError: invalid command name ".!canvas"
-Exception in Tkinter callback
-Traceback (most recent call last):
-  File "C:\Python\Lib\tkinter\__init__.py", line 1968, in __call__
-    return self.func(*args)
-           ^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\turtle.py", line 676, in eventfun
-    fun()
-  File "C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py", line 29, in move_up
-    t.setheading(90)
-  File "C:\Python\Lib\turtle.py", line 1935, in setheading
-    self._rotate(angle)
-  File "C:\Python\Lib\turtle.py", line 3348, in _rotate
-    self._update()
-  File "C:\Python\Lib\turtle.py", line 2668, in _update
-    self._update_data()
-  File "C:\Python\Lib\turtle.py", line 2658, in _update_data
-    self.screen._drawline(self.currentLineItem, self.currentLine,
-  File "C:\Python\Lib\turtle.py", line 539, in _drawline
-    self.cv.coords(lineitem, *cl)
-  File "<string>", line 1, in coords
-  File "C:\Python\Lib\tkinter\__init__.py", line 2851, in coords
-    self.tk.call((self._w, 'coords') + args))]
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_tkinter.TclError: invalid command name ".!canvas"
-Exception in Tkinter callback
-Traceback (most recent call last):
-  File "C:\Python\Lib\tkinter\__init__.py", line 1968, in __call__
-    return self.func(*args)
-           ^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\turtle.py", line 676, in eventfun
-    fun()
-  File "C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py", line 47, in move_right
-    t.setheading(0)
-  File "C:\Python\Lib\turtle.py", line 1935, in setheading
-    self._rotate(angle)
-  File "C:\Python\Lib\turtle.py", line 3350, in _rotate
-    self._update()
-  File "C:\Python\Lib\turtle.py", line 2668, in _update
-    self._update_data()
-  File "C:\Python\Lib\turtle.py", line 2658, in _update_data
-    self.screen._drawline(self.currentLineItem, self.currentLine,
-  File "C:\Python\Lib\turtle.py", line 539, in _drawline
-    self.cv.coords(lineitem, *cl)
-  File "<string>", line 1, in coords
-  File "C:\Python\Lib\tkinter\__init__.py", line 2851, in coords
-    self.tk.call((self._w, 'coords') + args))]
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_tkinter.TclError: invalid command name ".!canvas"
-Exception in Tkinter callback
-Traceback (most recent call last):
-  File "C:\Python\Lib\tkinter\__init__.py", line 1968, in __call__
-    return self.func(*args)
-           ^^^^^^^^^^^^^^^^
-  File "C:\Python\Lib\turtle.py", line 676, in eventfun
-    fun()
-  File "C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py", line 35, in move_down
-    t.setheading(270)
-  File "C:\Python\Lib\turtle.py", line 1935, in setheading
-    self._rotate(angle)
-  File "C:\Python\Lib\turtle.py", line 3348, in _rotate
-    self._update()
-  File "C:\Python\Lib\turtle.py", line 2668, in _update
-    self._update_data()
-  File "C:\Python\Lib\turtle.py", line 2658, in _update_data
-    self.screen._drawline(self.currentLineItem, self.currentLine,
-  File "C:\Python\Lib\turtle.py", line 539, in _drawline
-    self.cv.coords(lineitem, *cl)
-  File "<string>", line 1, in coords
-  File "C:\Python\Lib\tkinter\__init__.py", line 2851, in coords
-    self.tk.call((self._w, 'coords') + args))]
-    ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
-_tkinter.TclError: invalid command name ".!canvas"
+def move_down():
+    turtle.setheading(270)
+    x, y = turtle.position()
+    turtle.goto(x, y - 50)
+    stamp()
 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
+def move_left():
+    turtle.setheading(180)
+    x, y = turtle.position()
+    turtle.goto(x - 50, y)
+    stamp()
 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
-Traceback (most recent call last):
-  File "C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py", line 4, in <module>
-    window.title("WASD로 거북이 이동")
-NameError: name 'window' is not defined
->>> 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
->>> 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
->>> 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
->>> 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
->>> 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
->>> 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
-Traceback (most recent call last):
-  File "C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py", line 4, in <module>
-    window.listen()
-NameError: name 'window' is not defined
->>> 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
->>> 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
->>> 
-= RESTART: C:/Users/lhw59/OneDrive/바탕 화면/대학교/대학교/2학년 2학기/2d 게임프로그래밍/drill_1.py =
+def move_right():
+    turtle.setheading(0)
+    x, y = turtle.position()
+    turtle.goto(x + 50, y)
+    stamp()
+
+# 거북이 초기화 함수
+def reset_position():
+    turtle.clear()  # 모든 스탬프와 경로 지우기
+    turtle.penup()
+    turtle.goto(start_position)  # 시작 위치로 돌아가기
+    turtle.pendown()  # 펜을 내려서 경로 다시 그리기 시작
+
+# 키보드 입럭
+turtle.onkey(move_up, "w")
+turtle.onkey(move_down, "s")
+turtle.onkey(move_left, "a")
+turtle.onkey(move_right, "d")
+turtle.onkey(reset_position, "Escape")  # ESC키로 초기화
+
