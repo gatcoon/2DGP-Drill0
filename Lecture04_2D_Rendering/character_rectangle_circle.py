@@ -40,6 +40,8 @@ def run_right_up():
     pass
 def run_right_down():
     print('RIGHT DOWN')
+    for y in range(400,50,-10):
+        draw_boy(800-y,y)
     pass
 
 
@@ -65,7 +67,7 @@ def run_circle():
 def run_triangle():
     print('TRIANGLE')
     #run_bottom()
-    run_right_up()
+    #run_right_up()
     run_right_down()
 
 pass
