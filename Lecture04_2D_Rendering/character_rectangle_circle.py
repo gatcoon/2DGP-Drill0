@@ -52,12 +52,17 @@ def run_circle():
         y = cy + r * math.sin(math.radians(d))
 
         draw_boy(x,y)
+
+def run_triangle():
+    print('TRIANGLE')
+
 pass
 
 
 while True:
     #run_circle()
-    run_rectangle()
+    #run_rectangle()
+    run_triangle()
     break
 
 close_canvas()
