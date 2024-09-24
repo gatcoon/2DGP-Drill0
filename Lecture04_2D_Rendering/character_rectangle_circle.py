@@ -35,6 +35,8 @@ def run_left():
 
 def run_right_up():
     print('RIGHT UP')
+    for y in range(50,400,10):
+        draw_boy(y,y)
     pass
 def run_right_down():
     print('RIGHT DOWN')
@@ -62,7 +64,7 @@ def run_circle():
 
 def run_triangle():
     print('TRIANGLE')
-    run_bottom()
+    #run_bottom()
     run_right_up()
     run_right_down()
 
