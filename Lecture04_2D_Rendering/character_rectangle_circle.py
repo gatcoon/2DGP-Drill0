@@ -66,8 +66,8 @@ def run_circle():
 
 def run_triangle():
     print('TRIANGLE')
-    #run_bottom()
-    #run_right_up()
+    run_bottom()
+    run_right_up()
     run_right_down()
 
 pass
