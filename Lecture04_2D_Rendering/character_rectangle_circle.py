@@ -17,11 +17,11 @@ def run_circle():
     r,cx,cy = 300,800//2,600//2
     
     for d in range(0,360):
-        x = r * math.cos(math.radians(d))
-        y = r * math.sin(math.radians(d))
+        x = cx + r * math.cos(math.radians(d))
+        y = cy + r * math.sin(math.radians(d))
 
         clear_canvas_now()
-        boy.draw_now(400,300)
+        boy.draw_now(x,y)
         delay(0.1)
 
 pass
