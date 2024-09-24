@@ -33,6 +33,13 @@ def run_left():
         draw_boy(0,y)
     pass
 
+def run_right_up():
+    print('RIGHT UP')
+    pass
+def run_right_down():
+    print('RIGHT DOWN')
+    pass
+
 
 def run_rectangle():
     print('RECTANGLE')
@@ -55,6 +62,9 @@ def run_circle():
 
 def run_triangle():
     print('TRIANGLE')
+    run_bottom()
+    run_right_up()
+    run_right_down()
 
 pass
 
