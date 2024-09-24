@@ -7,9 +7,23 @@ open_canvas()
 grass = load_image('grass.png')
 boy = load_image('character.png')
 
+def run_top():
+    pass
+def run_right():
+    pass
+def run_bottom():
+    pass
+def run_left():
+    pass
+
+
 def run_rectangle():
     print('RECTANGLE')
-    
+    run_top()
+    run_right()
+    run_bottom()
+    run_left()
+    pass
 
 def run_circle():
     print('CIRCLE')
