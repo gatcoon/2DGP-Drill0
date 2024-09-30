@@ -49,6 +49,16 @@ while running:
     frame = (frame + 1) % 10
     x += dir_x * 5
     y += dir_y * 5
+    
+    if x < 0 + 100:
+        x = 0 + 100
+    elif x > 800 - 100:
+        x = 800 - 100
+
+    if y < 100:
+        y = 100
+    elif y > 600 - 100:
+        y = 600 - 100
     delay(0.05)
 
 
