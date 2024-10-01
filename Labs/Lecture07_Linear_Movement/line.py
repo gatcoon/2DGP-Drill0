@@ -45,20 +45,40 @@ def draw_big_point(p):
     turtle.write('     '+str(p))
 
 
-def draw_point(p):
+def draw_point(p): # p tuple,
     turtle.goto(p)
     turtle.dot(5, random.random(), random.random(), random.random())
 
 
 def draw_line(p1, p2):
     # fill here
-    pass
 
+    # 두 개 점만 그리기
+    draw_big_point(p1)
+    draw_big_point(p2)
+
+    x1, y1 = p1[0], p1[1]
+    x2, y2 = p2[0], p2[1]
+
+    a = (y2-y1)/(x2-x1) # 기울기 계산
+    b = y1 - x1 * a # 절편값 계산
+
+    for x in range(x1, x2, 10):
+        y = a * x + b
+        draw_point((x, y))
+
+    draw_point(p2)
+
+    pass
 
 prepare_turtle_canvas()
 
 
 # fill here
+p1 = (-100, -100) # tuple 로 정의한 점 1
+p2 = (300, 150) # tuple 로 정의한 점 2
+draw_line(p1, p2)
 
+draw_line((-100, -100), (-100, 500))
 
 turtle.done()
