@@ -1,7 +1,7 @@
 from pico2d import *
 import random
 import time
-
+import math
 
 WIDTH, HEIGHT = 1280, 1024
 open_canvas(WIDTH, HEIGHT)
@@ -20,10 +20,18 @@ def move_hand():
         last_move_time = current_time
 
 
-
 def move_boy():
+    global x, y
 
-    pass
+    distance = math.sqrt((hand_x - x) ** 2 + (hand_y - y) ** 2)
+
+    if distance > 0:
+        direction_x = (hand_x - x) / distance
+        direction_y = (hand_y - y) / distance
+
+        speed = 10
+        x += direction_x * speed
+        y += direction_y * speed
 
 moving = True
 x, y = WIDTH // 2, HEIGHT // 2
