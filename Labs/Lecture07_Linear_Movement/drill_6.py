@@ -12,12 +12,9 @@ character = load_image('animation_sheet.png')
 
 def move_hand():
     
-    global hand_x, hand_y, last_move_time
-    current_time = time.time()
-    if current_time - last_move_time >= 5:
-        hand_x = random.randint(0, WIDTH)
-        hand_y = random.randint(0, HEIGHT)
-        last_move_time = current_time
+    global hand_x, hand_y
+    hand_x = random.randint(0, WIDTH)
+    hand_y = random.randint(0, HEIGHT)
 
 
 def move_boy():
@@ -33,11 +30,13 @@ def move_boy():
         x += direction_x * speed
         y += direction_y * speed
 
+    if distance < 5:
+        move_hand()
+
 moving = True
 x, y = WIDTH // 2, HEIGHT // 2
 frame = 0
 hand_x, hand_y = random.randint(0, WIDTH), random.randint(0, HEIGHT)
-last_move_time = time.time()
 
 while moving:
     clear_canvas()
@@ -47,7 +46,6 @@ while moving:
     update_canvas()
     frame = (frame + 1) % 8
 
-    move_hand()
     move_boy()
 
     delay(0.05)
