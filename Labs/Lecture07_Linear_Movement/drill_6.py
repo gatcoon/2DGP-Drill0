@@ -4,7 +4,7 @@ WIDTH, HEIGHT = 1280, 1024
 open_canvas(WIDTH, HEIGHT)
 
 ground = load_image('TUK_GROUND.png')
-hand = load_image('hand_arrow')
+hand = load_image('hand_arrow.png')
 character = load_image('animation_sheet.png')
 
 def move_hand():
@@ -23,8 +23,8 @@ frame = 0
 
 while moving:
     clear_canvas()
-    ground.draw(x, y)
-    charcter.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
+    ground.draw(WIDTH //2, HEIGHT // 2)
+    character.clip_draw(frame * 100, 100 * 1, 100, 100, x, y)
     update_canvas()
     frame = (frame + 1) % 8
 
