@@ -1,10 +1,9 @@
 import turtle
+import math
 import random
-
 
 def stop():
     turtle.bye()
-
 
 def prepare_turtle_canvas():
     turtle.setup(1024, 768)
@@ -15,7 +14,7 @@ def prepare_turtle_canvas():
     turtle.shapesize(2)
     turtle.pensize(5)
     turtle.color(1, 0, 0)
-    turtle.speed(100)
+    turtle.speed(0)
     turtle.goto(-500, 0)
     turtle.pendown()
     turtle.goto(480, 0)
@@ -30,55 +29,30 @@ def prepare_turtle_canvas():
     turtle.home()
 
     turtle.shape('circle')
-    turtle.pensize(1)
+    turtle.pensize(3)
     turtle.color(0, 0, 0)
-    turtle.speed(50)
+    turtle.speed(0)
 
     turtle.onkey(stop, 'Escape')
     turtle.listen()
 
-
-def draw_big_point(p):
+def draw_point(p):  # p tuple
     turtle.goto(p)
-    turtle.color(0.8, 0.9, 0)
-    turtle.dot(15)
-    turtle.write('     '+str(p))
+    random_color = (random.random(), random.random(), random.random())
+    turtle.dot(3, random_color)
+
+def draw_rounded_triangle():
+    for t in range(0, 3601, 20):
+        angle = math.radians(t / 10)
 
 
-def draw_point(p): # p tuple,
-    turtle.goto(p)
-    turtle.dot(5, random.random(), random.random(), random.random())
+        r = 2 + 0.3 * math.cos(3 * angle)
+        x = r * math.cos(angle)
+        y = r * math.sin(angle)
 
-
-def draw_line(p1, p2):
-    # fill here
-
-    # 두 개 점만 그리기
-    draw_big_point(p1)
-    draw_big_point(p2)
-
-    x1, y1 = p1[0], p1[1]
-    x2, y2 = p2[0], p2[1]
-
-    a = (y2-y1)/(x2-x1) # 기울기 계산
-    b = y1 - x1 * a # 절편값 계산
-
-    for x in range(x1, x2, 10):
-        y = a * x + b
-        draw_point((x, y))
-
-    draw_point(p2)
-
-    pass
+        draw_point((x * 100, y * 100))
 
 prepare_turtle_canvas()
-
-
-# fill here
-p1 = (-100, -100) # tuple 로 정의한 점 1
-p2 = (300, 150) # tuple 로 정의한 점 2
-draw_line(p1, p2)
-
-draw_line((-100, -100), (-100, 500))
+draw_rounded_triangle()
 
 turtle.done()
