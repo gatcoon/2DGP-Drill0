@@ -44,7 +44,7 @@ class Ball:
 
         self.x = random.randint(0, 800)
         self.y = 599
-        self.speed = 5
+        self.speed = random.uniform(3, 10)  # 랜덤한 속도로 떨어지게 설정
 
     def update(self):
         # 공이 바닥에 닿으면 멈추도록 설정
