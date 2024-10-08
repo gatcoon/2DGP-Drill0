@@ -34,11 +34,25 @@ class Boy:
 
 class Ball:
     def __init__(self):
-        pass
+        # 공의 크기와 이미지를 랜덤하게 설정 (작은 공 또는 큰 공)
+        if random.choice([True, False]):
+            self.image = load_image('ball21x21.png')
+            self.size = 21
+        else:
+            self.image = load_image('ball41x41.png')
+            self.size = 41
+
+        self.x = random.randint(0, 800)
+        self.y = 599
+        self.speed = 5
+
     def update(self):
-        pass
+        # 공이 바닥에 닿으면 멈추도록 설정
+        if self.y > 30 + self.size / 2:
+            self.y -= self.speed
+
     def draw(self):
-        pass
+        self.image.draw(self.x, self.y)
 
 def handle_events():
     global running
@@ -53,6 +67,7 @@ def reset_world():
     global running
     global grass
     global team
+    global balls
     global world
 
     running = True
@@ -63,6 +78,9 @@ def reset_world():
 
     team = [Boy() for i in range(10)]
     world += team
+
+    balls = [Ball() for i in range(20)]  # 20개의 공 생성
+    world += balls
 
 running = True
 
