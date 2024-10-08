@@ -42,11 +42,11 @@ def handle_events():
 def reset_world():
     global running
     global grass
-    global boy
+    global team
 
     running = True
     grass = Grass() # 잔디를 찍어낸다. 생성한다
-    boy = Boy()
+    team = [Boy() for i in range(10)]
 
 
 running = True
@@ -54,13 +54,14 @@ running = True
 
 def update_world():
     grass.update() # 객체의 상태를 업데이트, 시뮬레이션
-    boy.update()
-    pass
+    for boy in team:
+        boy.update()
 
 def render_world():
     clear_canvas()
     grass.draw()
-    boy.draw()
+    for boy in team:
+        boy.draw()
     update_canvas()
 
 open_canvas()
