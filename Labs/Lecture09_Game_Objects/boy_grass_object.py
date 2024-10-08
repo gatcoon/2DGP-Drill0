@@ -35,16 +35,15 @@ class Boy:
 class Ball:
     def __init__(self):
         # 공의 크기와 이미지를 랜덤하게 설정 (작은 공 또는 큰 공)
-        if random.choice([True, False]):
+        if random.randint(0, 1):
             self.image = load_image('ball21x21.png')
             self.size = 21
         else:
             self.image = load_image('ball41x41.png')
             self.size = 41
 
-        self.x = random.randint(0, 800)
-        self.y = 599
-        self.speed = random.uniform(3, 10)  # 랜덤한 속도로 떨어지게 설정
+        self.x, self.y = random.randint(0, 800), 599
+        self.speed = random.randint(3, 10)  # 랜덤한 속도로 떨어지게 설정
 
     def update(self):
         # 공이 바닥에 닿으면 멈추도록 설정
