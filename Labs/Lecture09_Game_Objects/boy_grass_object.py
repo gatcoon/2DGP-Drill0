@@ -22,7 +22,7 @@ class Grass:
 class Boy:
     def __init__(self):
         self.x, self.y = random.randint(100, 700), 90
-        self.frame = 0
+        self.frame = random.randint(0, 7)
         self.image = load_image('run_animation.png')
 
     def update(self):
@@ -45,25 +45,28 @@ def reset_world():
     global running
     global grass
     global team
+    global world
 
     running = True
-    grass = Grass() # 잔디를 찍어낸다. 생성한다
-    team = [Boy() for i in range(10)]
+    world = []
 
+    grass = Grass() # 잔디를 찍어낸다. 생성한다
+    world.append(grass)
+
+    team = [Boy() for i in range(10)]
+    world += team
 
 running = True
 
 
 def update_world():
-    grass.update() # 객체의 상태를 업데이트, 시뮬레이션
-    for boy in team:
-        boy.update()
+    for o in world:
+        o.update()
 
 def render_world():
     clear_canvas()
-    grass.draw()
-    for boy in team:
-        boy.draw()
+    for o in world:
+        o.draw()
     update_canvas()
 
 open_canvas()
