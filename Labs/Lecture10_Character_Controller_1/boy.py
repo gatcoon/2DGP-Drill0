@@ -74,9 +74,7 @@ class Boy:
     def handle_event(self, event):
         # event : 입력 이벤트 key mouse
         # 우리가 state machine 전달해줄껀 (   ,   )
-        self.state_machine.add_event(
-            ('INPUT',event)
-        )
+        self.state_machine.add_event(('INPUT',event))
 
 
     def draw(self):
