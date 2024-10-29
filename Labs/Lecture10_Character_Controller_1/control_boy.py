@@ -17,7 +17,8 @@ def handle_events():
         elif event.type == SDL_KEYDOWN and event.key == SDLK_ESCAPE:
             running = False
         else:
-            boy.handle_event(event) # input 이벤트를 boy가 처리하도록
+            if event.type in (SDL_KEYUP, SDL_KEYDOWN):
+                boy.handle_event(event) # input 이벤트를 boy가 처리하도록
 
 
 def reset_world():
