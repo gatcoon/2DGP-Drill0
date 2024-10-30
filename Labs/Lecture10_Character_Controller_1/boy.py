@@ -101,14 +101,13 @@ class Run:
         pass
 
 class AutoRun:
-
     @staticmethod
     def enter(boy, e):
         boy.dir = 1 if boy.x < 400 else -1  # 현재 위치에 따라 초기 방향 설정
-        boy.action = 1  # 런 애니메이션으로 설정
+        boy.action = 1 if boy.dir > 0 else 0  # 방향에 따라 오른쪽 또는 왼쪽 바라보기
         boy.speed = 10  # 속도를 더 빠르게
         boy.start_time = get_time()  # 시작 시간 기록
-        boy.size_multiplier = 1.5  # 소년 크기를 확대
+        boy.size_multiplier = 1.5  # 화면에 그릴 때 크기를 확대
         print("AutoRun 상태로 진입")
 
     @staticmethod
@@ -122,13 +121,13 @@ class AutoRun:
         boy.x += boy.dir * boy.speed
         if boy.x < 50 or boy.x > 750:  # 좌우 경계에서 방향 전환
             boy.dir *= -1
+            boy.action = 1 if boy.dir > 0 else 0  # 방향에 따라 오른쪽 또는 왼쪽으로 애니메이션 설정
         if get_time() - boy.start_time > 5:
             boy.state_machine.add_event(('TIME_OUT', 0))  # 5초 후 IDLE 상태로 돌아가도록 이벤트 추가
         boy.frame = (boy.frame + 1) % 8
 
     @staticmethod
     def draw(boy, e=None):
-        # 화면에 그릴 때 boy.size_multiplier만큼 확대
         boy.image.clip_draw(
             boy.frame * 100, boy.action * 100, 100, 100,
             boy.x, boy.y,
