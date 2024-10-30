@@ -15,12 +15,12 @@ class Idle:
         elif right_up(e) or left_down(e) or start_event(e):
             boy.action = 3
             boy.face_dir = 1
+        elif e == ('TIME_OUT', 0):  # AutoRun에서 Idle로 전환될 때
+            boy.action = 3  # Idle 애니메이션 설정
 
-        boy.dir = 0 # 정지 상태이다
+        boy.dir = 0  # 정지 상태
         boy.frame = 0
-        # 현재 시간을 저장
-        boy.start_time = get_time()
-        pass
+        boy.start_time = get_time()  # 현재 시간 저장
 
     @staticmethod
     def exit(boy, e):
@@ -122,8 +122,8 @@ class AutoRun:
         if boy.x < 50 or boy.x > 750:  # 좌우 경계에서 방향 전환
             boy.dir *= -1
             boy.action = 1 if boy.dir > 0 else 0  # 방향에 따라 오른쪽 또는 왼쪽으로 애니메이션 설정
-        if get_time() - boy.start_time > 5:
-            boy.state_machine.add_event(('TIME_OUT', 0))  # 5초 후 IDLE 상태로 돌아가도록 이벤트 추가
+        if get_time() - boy.start_time > 5:  # 5초 경과 시 Idle로 전환하는 이벤트 추가
+            boy.state_machine.add_event(('TIME_OUT', 0))
         boy.frame = (boy.frame + 1) % 8
 
     @staticmethod
@@ -133,7 +133,6 @@ class AutoRun:
             boy.x, boy.y,
             int(100 * boy.size_multiplier), int(100 * boy.size_multiplier)  # 확대된 크기로 그리기
         )
-
 
 def auto_run_event(e):
     return e[0] == 'AUTO_RUN'
