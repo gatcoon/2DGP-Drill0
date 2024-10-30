@@ -4,7 +4,6 @@ from pico2d import load_image
 
 from state_machine import StateMachine, time_out, space_down, right_down, left_down, right_up, left_up, start_event
 
-
 from pico2d import *
 
 class Idle:
@@ -105,20 +104,40 @@ class AutoRun:
 
     @staticmethod
     def enter(boy, e):
+        boy.dir = 1 if boy.x < 400 else -1  # 현재 위치에 따라 초기 방향 설정
+        boy.action = 1  # 런 애니메이션으로 설정
+        boy.speed = 10  # 속도를 더 빠르게
+        boy.start_time = get_time()  # 시작 시간 기록
+        boy.size_multiplier = 1.5  # 소년 크기를 확대
+        print("AutoRun 상태로 진입")
         pass
 
     @staticmethod
     def exit(boy, e):
+        boy.speed = 5  # 속도를 원래대로 복귀
+        boy.size_multiplier = 1  # 크기 원래대로 복귀
+        print("AutoRun 상태에서 종료")
         pass
 
     @staticmethod
     def do(boy, e):
+        boy.x += boy.dir * boy.speed
+        if boy.x < 50 or boy.x > 750:  # 좌우 경계에서 방향 전환
+            boy.dir *= -1
+        if get_time() - boy.start_time > 5:
+            boy.state_machine.add_event(('TIME_OUT', 0))  # 5초 후 IDLE 상태로 돌아가도록 이벤트 추가
+        boy.frame = (boy.frame + 1) % 8
         pass
 
     @staticmethod
     def draw(boy, e=None):
+        boy.image.clip_draw(
+            boy.frame * 100, boy.action * 100, int(100 * boy.size_multiplier), int(100 * boy.size_multiplier),
+            boy.x, boy.y)
         pass
 
+def auto_run_event(e):
+    return e[0] == 'AUTO_RUN'
 
 class Boy:
     def __init__(self):
@@ -126,15 +145,18 @@ class Boy:
         self.frame = 0
         self.dir = 0
         self.action = 3
+        self.speed = 5
+        self.size_multiplier = 1
         self.image = load_image('animation_sheet.png')
         self.state_machine = StateMachine(self) # 소년 객체의 state machine 생성
         self.state_machine.start(Idle) # 초기 상태가 Idle
         self.state_machine.set_transitions(
             {
-                Run : {right_down: Idle, left_down: Idle, right_up: Idle, left_up: Idle, space_down: Run}, # Run 상태에서 어떤 이벤트가 들어와도 처리하지 않겠다
-                Idle : { right_down: Run, left_down: Run, left_up: Run, right_up: Run, time_out: Sleep, space_down: Idle },
-                Sleep : { right_down: Run, left_down: Run, right_up: Run, left_up: Run, space_down: Idle },
-                AutoRun : {time_out: Idle, right_down: Run, left_down: Run, right_up: Run, left_up: Run}
+                Run: {right_down: Idle, left_down: Idle, right_up: Idle, left_up: Idle, space_down: Run},
+                Idle: {right_down: Run, left_down: Run, left_up: Run, right_up: Run, time_out: Sleep, space_down: Idle,
+                       auto_run_event: AutoRun},
+                Sleep: {right_down: Run, left_down: Run, right_up: Run, left_up: Run, space_down: Idle},
+                AutoRun: {time_out: Idle, right_down: Run, left_down: Run, right_up: Run, left_up: Run}
             }
         )
 
@@ -145,7 +167,10 @@ class Boy:
     def handle_event(self, event):
         # event : 입력 이벤트 key mouse
         # 우리가 state machine 전달해줄껀 (   ,   )
-        self.state_machine.add_event(('INPUT',event))
+        if event.type == SDL_KEYDOWN and event.key == SDLK_a:
+            self.state_machine.add_event(('AUTO_RUN', 0))  # 'a' 키로 AutoRun 상태 전환
+        else:
+            self.state_machine.add_event(('INPUT', event))
 
 
     def draw(self):
