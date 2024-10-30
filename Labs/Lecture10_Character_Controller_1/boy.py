@@ -101,6 +101,24 @@ class Run:
         )
         pass
 
+class AutoRun:
+
+    @staticmethod
+    def enter(boy, e):
+        pass
+
+    @staticmethod
+    def exit(boy, e):
+        pass
+
+    @staticmethod
+    def do(boy, e):
+        pass
+
+    @staticmethod
+    def draw(boy, e=None):
+        pass
+
 
 class Boy:
     def __init__(self):
@@ -115,7 +133,8 @@ class Boy:
             {
                 Run : {right_down: Idle, left_down: Idle, right_up: Idle, left_up: Idle, space_down: Run}, # Run 상태에서 어떤 이벤트가 들어와도 처리하지 않겠다
                 Idle : { right_down: Run, left_down: Run, left_up: Run, right_up: Run, time_out: Sleep, space_down: Idle },
-                Sleep : { right_down: Run, left_down: Run, right_up: Run, left_up: Run, space_down: Idle }
+                Sleep : { right_down: Run, left_down: Run, right_up: Run, left_up: Run, space_down: Idle },
+                AutoRun : {}
             }
         )
 
