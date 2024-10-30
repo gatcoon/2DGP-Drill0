@@ -110,14 +110,12 @@ class AutoRun:
         boy.start_time = get_time()  # 시작 시간 기록
         boy.size_multiplier = 1.5  # 소년 크기를 확대
         print("AutoRun 상태로 진입")
-        pass
 
     @staticmethod
     def exit(boy, e):
         boy.speed = 5  # 속도를 원래대로 복귀
         boy.size_multiplier = 1  # 크기 원래대로 복귀
         print("AutoRun 상태에서 종료")
-        pass
 
     @staticmethod
     def do(boy, e):
@@ -127,14 +125,16 @@ class AutoRun:
         if get_time() - boy.start_time > 5:
             boy.state_machine.add_event(('TIME_OUT', 0))  # 5초 후 IDLE 상태로 돌아가도록 이벤트 추가
         boy.frame = (boy.frame + 1) % 8
-        pass
 
     @staticmethod
     def draw(boy, e=None):
+        # 화면에 그릴 때 boy.size_multiplier만큼 확대
         boy.image.clip_draw(
-            boy.frame * 100, boy.action * 100, int(100 * boy.size_multiplier), int(100 * boy.size_multiplier),
-            boy.x, boy.y)
-        pass
+            boy.frame * 100, boy.action * 100, 100, 100,
+            boy.x, boy.y,
+            int(100 * boy.size_multiplier), int(100 * boy.size_multiplier)  # 확대된 크기로 그리기
+        )
+
 
 def auto_run_event(e):
     return e[0] == 'AUTO_RUN'
