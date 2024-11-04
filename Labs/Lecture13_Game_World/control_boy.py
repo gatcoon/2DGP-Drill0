@@ -28,11 +28,14 @@ def reset_world():
 
     running = True
 
-    grass = Grass()
-    game_world.add_object(grass, 0)
+    background_grass = Grass(y=70)
+    game_world.add_object(background_grass, 0)  # depth=0으로 백그라운드에 추가
 
     boy = Boy() # 영숙 객체
     game_world.add_object(boy, 1)
+    
+    foreground_grass = Grass(y=50)
+    game_world.add_object(foreground_grass, 1)  # depth=1로 포어그라운드에 추가
 
 
 
