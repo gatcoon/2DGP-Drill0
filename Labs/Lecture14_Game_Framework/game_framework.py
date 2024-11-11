@@ -42,15 +42,15 @@ def quit():
 def run(start_mode):
     global running, stack
     running = True
-    stack = [start_mode]
+    stack = [start_mode]  # stack을 초기화하고 start_mode 추가
     start_mode.init()
 
-    while (running):
+    while running:
         stack[-1].handle_events()
         stack[-1].update()
         stack[-1].draw()
 
-    # repeatedly delete the top of the stack
-    while (len(stack) > 0):
+    while len(stack) > 0:
         stack[-1].finish()
         stack.pop()
+
