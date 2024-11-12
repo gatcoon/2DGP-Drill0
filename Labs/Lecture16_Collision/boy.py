@@ -158,7 +158,7 @@ class Boy:
     def fire_ball(self):
         if self.ball_count > 0:
             self.ball_count -= 1
-            ball = Ball(self.x, self.y, self.face_dir*10)
+            ball = Ball(self.x, self.y, self.face_dir * 10, is_fired=True)
             game_world.add_object(ball)
 
     def get_bb(self):

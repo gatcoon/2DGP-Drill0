@@ -1,16 +1,11 @@
 import random
-
 from pico2d import *
 import game_framework
-
 import game_world
-from game_world import add_collision_pair
 from grass import Grass
 from boy import Boy
 from ball import Ball
 from zombie import Zombie
-
-# boy = None
 
 def handle_events():
     events = get_events()
@@ -24,39 +19,35 @@ def handle_events():
 
 def init():
     global boy
+    global balls
 
+    # 배경과 소년을 추가합니다.
     grass = Grass()
     game_world.add_object(grass, 0)
 
     boy = Boy()
     game_world.add_object(boy, 1)
 
-    # fill here
-    global balls
-    balls = [Ball(random.randint(100, 1500), 60, 0) for _ in range(30)]
-    game_world.add_objects(balls, 1) # 게임 월드에 추가.
+    # 공이 왼쪽에서만 생성되도록 설정합니다.
+    balls = [Ball(random.randint(0, 400), 60, 0) for _ in range(30)]
+    game_world.add_objects(balls, 1)
 
-    # 충돌 대상들을 등록해주기
-    add_collision_pair('boy:ball', boy, None)
+    # 충돌 대상들을 개별적으로 등록합니다.
     for ball in balls:
-        add_collision_pair('boy:ball', boy, ball)
+        game_world.add_collision_pair('boy:ball', boy, ball)
 
-    # { 'boy:ball' : [ [boy], [ball1, ball2, ball3, ..., ball30 ] ] }
-
+    # 좀비 생성 및 충돌 쌍 등록
     zombies = [Zombie() for _ in range(5)]
     game_world.add_objects(zombies, 1)
-
-
+    for zombie in zombies:
+        for ball in balls:
+            game_world.add_collision_pair('zombie:ball', zombie, ball)
 
 def finish():
     game_world.clear()
-    pass
-
 
 def update():
-    game_world.update() # 객체들의 위치가 다 결정됐다. 따라서 이어서 충돌 검사를 하면 됨.
-
-    # fill here
+    game_world.update()
     game_world.handle_collision()
 
 def draw():
@@ -69,4 +60,3 @@ def pause():
 
 def resume():
     pass
-

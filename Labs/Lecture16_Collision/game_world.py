@@ -24,8 +24,8 @@ def remove_object(o):
         if o in layer:
             layer.remove(o)
             remove_collision_object(o)
-            del o
             return
+    # 이미 삭제된 경우 예외를 발생시키지 않고 무시하도록 수정
     print(f"Warning: Tried to remove non-existing object {o}")
 
 
@@ -79,10 +79,8 @@ def handle_collision():
         for a in pairs[0]:
             for b in pairs[1]:
                 if collide(a, b):
-                    if a in world[1]:  # 객체가 여전히 존재하는지 확인
-                        a.handle_collision(group, b)
-                    if b in world[1]:  # 객체가 여전히 존재하는지 확인
-                        b.handle_collision(group, a)
+                    a.handle_collision(group, b)
+                    b.handle_collision(group, a)
 
 
     return None
