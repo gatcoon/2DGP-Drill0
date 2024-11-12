@@ -30,15 +30,14 @@ def init():
     balls = [Ball(random.randint(0, 400), 60, 0) for _ in range(30)]
     game_world.add_objects(balls, 1)
 
-    # 충돌 대상들을 개별적으로 등록합니다.
+    # 각 공과 소년의 충돌 쌍 등록
     for ball in balls:
         game_world.add_collision_pair('boy:ball', boy, ball)
 
-    # 좀비 생성 및 충돌 쌍 등록
+    # 각 좀비와 개별적으로 충돌 쌍을 등록
     zombies = [Zombie() for _ in range(5)]
     game_world.add_objects(zombies, 1)
 
-    # 각 좀비와 개별적으로 충돌 쌍을 등록
     for zombie in zombies:
         game_world.add_collision_pair('boy:zombie', boy, zombie)  # Boy와 Zombie 간 충돌
         for ball in balls:

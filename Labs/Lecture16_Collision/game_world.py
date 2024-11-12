@@ -74,6 +74,7 @@ def collide(a, b):
 
     return True
 
+
 def handle_collision():
     for group, pairs in collision_pairs.items():
         for a in pairs[0]:
@@ -81,6 +82,3 @@ def handle_collision():
                 if collide(a, b):
                     a.handle_collision(group, b)
                     b.handle_collision(group, a)
-
-
-    return None

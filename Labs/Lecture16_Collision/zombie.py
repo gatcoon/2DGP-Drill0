@@ -48,14 +48,15 @@ class Zombie:
             Zombie.images['Walk'][int(self.frame)].composite_draw(0, 'h', self.x, self.y, self.size, self.size)
         else:
             Zombie.images['Walk'][int(self.frame)].draw(self.x, self.y, self.size, self.size)
+
+        # 충돌 박스 표시
         left, bottom, right, top = self.get_bb()
         draw_rectangle(left, bottom, right, top)
 
     def handle_collision(self, group, other):
         # 모든 공과의 충돌을 처리하고, 생명을 줄이며 두 번째 충돌 시 제거
         if group == 'zombie:ball' and isinstance(other, Ball):
-            # 첫 번째 충돌 시 크기를 줄이고, 두 번째 충돌 시 좀비 삭제
-            if self.life > 1:
+            if self.life == 2:  # 첫 번째 충돌에서만 크기를 줄입니다.
                 self.size /= 2  # 크기 절반으로 줄이기
                 self.y -= 10    # 높이 조정
             self.life -= 1
