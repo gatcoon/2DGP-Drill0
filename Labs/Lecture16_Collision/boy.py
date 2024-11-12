@@ -168,7 +168,9 @@ class Boy:
         pass
 
     def handle_collision(self, group, other):
-        # fill here
+        # 소년이 공과 충돌할 때는 ball_count를 증가시키고,
+        # 좀비와 충돌할 때는 게임을 종료합니다.
         if group == 'boy:ball':
             self.ball_count += 1
-        pass
+        elif group == 'boy:zombie':
+            game_framework.quit()  # 소년과 좀비가 충돌하면 게임 종료

@@ -21,14 +21,12 @@ def init():
     global boy
     global balls
 
-    # 배경과 소년을 추가합니다.
     grass = Grass()
     game_world.add_object(grass, 0)
 
     boy = Boy()
     game_world.add_object(boy, 1)
 
-    # 공이 왼쪽에서만 생성되도록 설정합니다.
     balls = [Ball(random.randint(0, 400), 60, 0) for _ in range(30)]
     game_world.add_objects(balls, 1)
 
@@ -39,9 +37,12 @@ def init():
     # 좀비 생성 및 충돌 쌍 등록
     zombies = [Zombie() for _ in range(5)]
     game_world.add_objects(zombies, 1)
+
+    # 각 좀비와 개별적으로 충돌 쌍을 등록
     for zombie in zombies:
+        game_world.add_collision_pair('boy:zombie', boy, zombie)  # Boy와 Zombie 간 충돌
         for ball in balls:
-            game_world.add_collision_pair('zombie:ball', zombie, ball)
+            game_world.add_collision_pair('zombie:ball', zombie, ball)  # Zombie와 Ball 간 충돌
 
 def finish():
     game_world.clear()
