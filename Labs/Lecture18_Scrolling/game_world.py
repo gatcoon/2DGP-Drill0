@@ -73,3 +73,6 @@ def handle_collisions():
                     a.handle_collision(group, b)
                     b.handle_collision(group, a)
 
+def init_collision_pairs():
+    import server
+    add_collision_pair("boy:ball", server.boy, None)  # 캐릭터와 공의 충돌 그룹

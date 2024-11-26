@@ -220,8 +220,8 @@ class Boy:
         self.y += math.sin(self.dir) * self.speed * game_framework.frame_time
 
         # 화면 좌표 단위의 상하좌우제한
-        # self.x = clamp(25.0, self.x, get_canvas_width()-25.0)
-        # self.y = clamp(25.0, self.y, get_canvas_height()-25.0)
+        self.x = clamp(25.0, self.x, get_canvas_width()-25.0)
+        self.y = clamp(25.0, self.y, get_canvas_height()-25.0)
 
         # 월드 좌표 관점의 상하좌우제한하려면
         # self.x = clamp(25.0, self.x, server.background.w - 25.0)
@@ -232,10 +232,10 @@ class Boy:
         self.state_machine.handle_event(('INPUT', event))
 
     def draw(self):
-        sx, sy = get_canvas_width()/2, get_canvas_height()/2
+        # sx, sy = get_canvas_width()/2, get_canvas_height()/2
 
-        # sx = self.x - server.background.window_left
-        # sy = self.y - server.background.window_bottom
+        sx = self.x - server.background.window_left
+        sy = self.y - server.background.window_bottom
 
         self.image.clip_draw(int(self.frame) * 100, self.action * 100, 100, 100, sx, sy)
         self.font.draw(int(sx - 100), int(sy + 60), f'({self.x:5.5}, {self.y:5.5})', (255, 255, 0))
@@ -245,7 +245,7 @@ class Boy:
         return self.x - 20, self.y - 50, self.x + 20, self.y + 50
 
     def handle_collision(self, group, other):
-        pass
-
+        if group == "boy:ball":
+            print(f"Collided with Ball at ({other.x}, {other.y})")  # 디버깅 메시지
 
 

@@ -14,8 +14,12 @@ class Ball:
         self.y = y if y else random.randint(100, 924)
 
     def draw(self):
-        self.image.draw(self.x, self.y)
-        draw_rectangle(*self.get_bb())
+        # 월드 좌표에서 화면 좌표로 변환
+        import server
+        sx = self.x - server.background.window_left
+        sy = self.y - server.background.window_bottom
+        self.image.draw(sx, sy)
+        draw_rectangle(sx - 10, sy - 10, sx + 10, sy + 10)  # 충돌 영역 디버깅
 
     def update(self):
         pass
@@ -24,4 +28,6 @@ class Ball:
         return self.x - 10, self.y - 10, self.x + 10, self.y + 10
 
     def handle_collision(self, group, other):
-        pass
+        if group == "boy:ball":
+            game_world.remove_object(self)  # 공 제거
+            print("Ball eaten!")  # 디버깅 메시지

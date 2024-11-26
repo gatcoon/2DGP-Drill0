@@ -33,6 +33,13 @@ def init():
     server.boy = Boy()
     game_world.add_object(server.boy, 1)
 
+    # 공 생성
+    for _ in range(100):
+        from ball import Ball
+        ball = Ball()
+        game_world.add_object(ball, 1)
+        game_world.add_collision_pair("boy:ball", server.boy, ball)  # 충돌 그룹 추가
+
 def finish():
     game_world.clear()
     pass
